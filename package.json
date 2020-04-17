@@ -21,7 +21,18 @@
     "axios": "^0.19.2",
     "date-fns": "^2.11.1",
     "expo-constants": "~9.0.0",
-    "react-native-toastjs": "^1.0.1"
+    "react-native-toastjs": "^1.0.1",
+    "styled-components": "^5.0.1",
+    "react-native-gesture-handler": "~1.6.0",
+    "react-native-keyboard-aware-scroll-view": "^0.9.1",
+    "react-native-keyboard-spacer": "^0.4.1",
+    "react-native-reanimated": "~1.7.0",
+    "react-native-responsive-screen": "^1.4.1",
+    "react-native-safe-area-context": "0.7.3",
+    "react-native-screens": "2.2.0",
+    "@react-native-community/datetimepicker": "2.2.0",
+    "@react-native-community/masked-view": "0.1.6",
+    "@expo/vector-icons": "^10.0.0"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.1.0",
