@@ -3,7 +3,7 @@ import "intl";
 import "intl/locale-data/jsonp/pt-BR";
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
-// import Routes from "./src/routes";
+import Routes from "./src/routes";
 import { StatusBar } from "react-native";
 import ToastProvider, { Toast } from "react-native-toastjs";
 
@@ -25,7 +25,7 @@ export default function App() {
           backgroundColor="#111111"
           translucent={true}
         />
-        {/* <Routes fonts={fontsLoaded} /> */}
+        <Routes />
       </ToastProvider>
     );
   }
