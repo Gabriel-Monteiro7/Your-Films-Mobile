@@ -3,7 +3,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const Container = styled.View`
-  padding: 35px 30px 10px;
+  padding: 35px 0px 10px;
   width: 100%;
   flex-direction: row;
 `;
