@@ -50,12 +50,13 @@ export default function Card() {
           </PlayButton>
           <ContainerProgress>
             <Progress>
-              <StatusProgress></StatusProgress>
+              <StatusProgress />
             </Progress>
             <ProgressTitle>1 season 4 series</ProgressTitle>
           </ContainerProgress>
         </Footer>
       </Image>
+      
     </Container>
   );
 }
