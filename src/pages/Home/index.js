@@ -4,7 +4,7 @@ import { Container, Title, Header, Icon, ContainerIcon } from "./styles";
 import Card from "../../components/Card";
 import Carousel from "react-native-snap-carousel";
 import { width } from "../../util";
-
+import CategoryList from "../../components/CategoryList";
 export default function Home() {
   return (
     <Container>
@@ -14,6 +14,7 @@ export default function Home() {
           <Icon name={"search"} />
         </ContainerIcon>
       </Header>
+      <CategoryList />
       <View style={{ flex: 1, justifyContent: "flex-start" }}>
         <Carousel
           // ref={(c) => {
@@ -22,9 +23,9 @@ export default function Home() {
           data={[1, 2]}
           renderItem={({ item, index, separators }) => <Card />}
           sliderWidth={500}
-          itemWidth={300}
-          containerCustomStyle={{ marginLeft: -70 }}
-/>
+          itemWidth={280}
+          containerCustomStyle={{ marginLeft: -80 }}
+        />
       </View>
     </Container>
   );

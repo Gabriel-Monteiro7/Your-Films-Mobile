@@ -16,7 +16,7 @@ export const Image = styled.ImageBackground.attrs({
 })`
   justify-content: space-between;
   position: relative;
-  height: 500px;
+  height: 420px;
   width: 100%;
   padding: 15px 20px;
 `;
@@ -58,7 +58,7 @@ export const StatusProgress = styled.View`
 `;
 export const Progress = styled.View`
   width: 50px;
-  height: 8px;
+  height: 5px;
   margin: 3px 0px;
   background: #333335;
   border-radius: 100px;
