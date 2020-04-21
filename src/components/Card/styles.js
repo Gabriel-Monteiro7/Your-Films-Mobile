@@ -19,6 +19,7 @@ export const Image = styled.ImageBackground.attrs({
   height: 420px;
   width: 100%;
   padding: 15px 20px;
+
 `;
 export const ContainerIcon = styled.TouchableOpacity`
   padding: 0px 10px;
@@ -31,7 +32,9 @@ export const Header = styled.View`
   align-items: center;
   justify-content: space-between;
 `;
-export const PlayButton = styled.TouchableOpacity``;
+export const PlayButton = styled.TouchableOpacity`
+
+`;
 export const ContainerButton = styled(LinearGradient)`
   height: 50px;
   width: 50px;
@@ -58,7 +61,7 @@ export const StatusProgress = styled.View`
 `;
 export const Progress = styled.View`
   width: 50px;
-  height: 5px;
+  height: 4px;
   margin: 3px 0px;
   background: #333335;
   border-radius: 100px;

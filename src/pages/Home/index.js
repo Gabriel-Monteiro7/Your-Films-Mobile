@@ -18,6 +18,7 @@ import Card from "../../components/Card";
 import Carousel from "react-native-snap-carousel";
 import { width } from "../../util";
 import CategoryList from "../../components/CategoryList";
+
 export default function Home() {
   const [films, setFilms] = useState([
     { title: "See", rank: 4.75 },
@@ -45,7 +46,10 @@ export default function Home() {
           <Icon name={"search"} />
         </ContainerIcon>
       </Header>
-      <CategoryList />
+      <View style={{ paddingTop: 30, paddingBottom: 20 }}>
+        <CategoryList />
+      </View>
+
       <View
         style={{
           alignItems: "center",

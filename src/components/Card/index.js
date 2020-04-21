@@ -18,12 +18,23 @@ import {
   StatusProgress,
 } from "./styles";
 import Imagem from "../../assets/images/Image.png";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Card() {
+  const navigation = useNavigation();
+  function navigateToDescription() {
+    navigation.navigate("Description");
+  }
   const [favorite, setFavorite] = useState(false);
   return (
     <Container>
-      <Image source={Imagem}>
+      <View></View>
+      <Image
+        source={Imagem}
+        onTouchEnd={() => {
+          navigateToDescription();
+        }}
+      >
         <Header>
           <Title>See</Title>
           <ContainerIcon
@@ -56,7 +67,6 @@ export default function Card() {
           </ContainerProgress>
         </Footer>
       </Image>
-      
     </Container>
   );
 }

@@ -11,9 +11,8 @@ export default function CategoryList() {
         horizontal={true}
         data={[
           { id: "0", title: "All" },
-          { id: "1", title: "Terror" },
+          { id: "1", title: "About" },
           { id: "2", title: "Ação" },
-          { id: "3", title: "Suspense" },
         ]}
         renderItem={({ item }) => (
           <ContainerCategory

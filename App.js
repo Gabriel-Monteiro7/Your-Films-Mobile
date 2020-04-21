@@ -22,7 +22,7 @@ export default function App() {
       <ToastProvider>
         <StatusBar
           barStyle="light-content"
-          backgroundColor="#111111"
+          backgroundColor="transparent"
           translucent={true}
         />
         <Routes />
