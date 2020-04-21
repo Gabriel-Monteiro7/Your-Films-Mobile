@@ -3,8 +3,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const Container = styled.View`
-  padding: 35px 0px 10px;
-  width: 100%;
+  
+  /* width: 100%; */
   flex-direction: row;
 `;
 export const CategoryTitle = styled.Text`
@@ -14,7 +14,7 @@ export const CategoryTitle = styled.Text`
 `;
 export const Line = styled.View`
   margin-top: 5px;
-  width: 70%;
+  width: 14px;
   background: ${(props) => (props.active ? "#5ac4fe" : "transparent")};
   height: 3px;
   border-radius: 100px;
