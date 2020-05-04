@@ -25,6 +25,7 @@ export const Mask = styled.TouchableOpacity`
   height: 100%;
   justify-content: space-between;
   position: relative;
+
 `;
 export const ContainerIcon = styled.TouchableOpacity`
   padding: 0px 10px;
@@ -37,7 +38,9 @@ export const Header = styled.View`
   align-items: center;
   justify-content: space-between;
 `;
-export const PlayButton = styled.TouchableOpacity``;
+export const PlayButton = styled.TouchableOpacity`
+
+`;
 export const ContainerButton = styled(LinearGradient)`
   height: 50px;
   width: 50px;
