@@ -26,14 +26,15 @@ import { useNavigation } from "@react-navigation/native";
 import CategoryList from "../../components/CategoryList";
 import { View, Text } from "react-native";
 
-export default function Description() {
+export default function Description({ route }) {
   const navigation = useNavigation();
   function navigateToBack() {
     navigation.goBack();
   }
+  useEffect(() => {}, []);
   return (
     <>
-      <Image source={imagem}>
+      <Image source={{ uri: route.params.backdrop_path }}>
         <Container>
           <ContainerBack
             onPress={() => {
