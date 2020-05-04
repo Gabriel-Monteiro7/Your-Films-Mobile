@@ -23,7 +23,7 @@ export const Image = styled.ImageBackground.attrs({
   // borderRadius: 20,
 })`
   padding-top: ${Constants.statusBarHeight + hp(3)}px;
-  height: 500px;
+  flex:1;
 `;
 export const InformationContainer = styled.View`
   flex: 1;
@@ -73,7 +73,8 @@ export const Forma = styled.Image.attrs({
   width: 100%;
   border-top-right-radius: 35px;
   border-top-left-radius: 35px;
-  margin-top: -32px;
+  margin-top: -34px;
+
   /* padding-bottom: 50px; */
 `;
 export const PlayButton = styled.TouchableOpacity`
