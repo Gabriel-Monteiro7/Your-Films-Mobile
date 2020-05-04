@@ -16,28 +16,23 @@ import {
 } from "./styles";
 import Card from "../../components/Card";
 import Carousel from "react-native-snap-carousel";
-import { width } from "../../util";
+import { width, setFilme} from "../../util";
 import CategoryList from "../../components/CategoryList";
-
+import { getMovies } from "../../services/api";
 export default function Home() {
-  const [films, setFilms] = useState([
-    { title: "See", rank: 4.75 },
-    { title: "Frontier", rank: 3.11 },
-  ]);
+  const [films, setFilms] = useState([]);
   const [index, setIndex] = useState(0);
-  const [rank, setRank] = useState(films[index].rank);
-  const [rankValue, setRankValue] = useState({
-    entire: parseInt(rank),
-    broken: Math.round((rank - parseInt(rank)) * 1000),
-  });
-
+  const [rank, setRank] = useState(films[index]?.vote_average);
   useEffect(() => {
-    setRank(films[index].rank);
-    setRankValue({
-      entire: parseInt(rank),
-      broken: Math.round((rank - parseInt(rank)) * 1000),
+    getMovies().then((filmes) => {
+      setFilms(setFilme(filmes.data["results"]));
+      setRank(filmes[index]?.vote_average);
     });
+  }, []);
+  useEffect(() => {
+    setRank(films[index]?.vote_average);
   }, [index, rank]);
+
   return (
     <Container>
       <Header>
@@ -59,7 +54,7 @@ export default function Home() {
           data={films}
           renderItem={({ item, index, separators }) => (
             <>
-              <Card />
+              <Card filme={item} />
             </>
           )}
           onSnapToItem={(index) => setIndex(index)}
@@ -75,10 +70,7 @@ export default function Home() {
               alignItems: "center",
             }}
           >
-            <RankValue>
-              {rankValue.entire}{" "}
-              {rankValue.broken === 0 ? "" : rankValue.broken}
-            </RankValue>
+            <RankValue>{rank}</RankValue>
             <IconRank name={"my-location"} />
           </View>
           <RankProgress>
@@ -87,10 +79,10 @@ export default function Home() {
                 <Progress key={index}>
                   <StatusProgress
                     progress={
-                      rank * 2 - index >= 1
+                      rank - index >= 1
                         ? 100
-                        : rank * 2 - index > 0
-                        ? (rank * 2 - index) * 100
+                        : rank - index > 0
+                        ? (rank - index) * 100
                         : 0
                     }
                   />

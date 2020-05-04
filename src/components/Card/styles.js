@@ -4,21 +4,27 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export const Container = styled.View`
   margin: 30px 0px;
-  background: transparent;
+
 `;
 export const Title = styled.Text`
   color: white;
-  font-size: 40px;
+  font-size: 24px;
   font-family: "Lato-Bold";
 `;
 export const Image = styled.ImageBackground.attrs({
   borderRadius: 20,
 })`
-  justify-content: space-between;
-  position: relative;
   height: 420px;
   width: 100%;
+  background:#1f1f1f;
+  border-radius:20px;
+`;
+export const Mask = styled.TouchableOpacity`
+  background: #11111158;
   padding: 15px 20px;
+  height: 100%;
+  justify-content: space-between;
+  position: relative;
 
 `;
 export const ContainerIcon = styled.TouchableOpacity`
@@ -54,7 +60,7 @@ export const ContainerProgress = styled.View`
   align-items: flex-end;
 `;
 export const StatusProgress = styled.View`
-  width: 70%;
+  width: 100%;
   background: #5ac4fe;
   height: 100%;
   border-radius: 100px;
