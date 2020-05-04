@@ -74,6 +74,7 @@ export const Forma = styled.Image.attrs({
   border-top-right-radius: 35px;
   border-top-left-radius: 35px;
   margin-top: -34px;
+
   /* padding-bottom: 50px; */
 `;
 export const PlayButton = styled.TouchableOpacity`

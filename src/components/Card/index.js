@@ -16,14 +16,38 @@ import {
   Progress,
   ProgressTitle,
   StatusProgress,
+  Mask,
 } from "./styles";
-import Imagem from "../../assets/images/Image.png";
+import { useNavigation } from "@react-navigation/native";
+import { formatDate } from "../../util";
+export default function Card({ filme }) {
+  const navigation = useNavigation();
+  function navigateToDescription() {
+    navigation.navigate("Description",filme);
 
-export default function Card() {
+  }
   const [favorite, setFavorite] = useState(false);
   return (
     <Container>
-      <Image source={Imagem}>
+      <Image source={{ uri: filme.poster_path }}>
+        <Mask
+          onPress={() => {
+            navigateToDescription();
+          }}
+        >
+          <Header>
+            <Title>{filme.title}</Title>
+            <ContainerIcon
+              onPress={() => {
+                setFavorite(!favorite);
+              }}
+      <View></View>
+      <Image
+        source={Imagem}
+        onTouchEnd={() => {
+          navigateToDescription();
+        }}
+      >
         <Header>
           <Title>See</Title>
           <ContainerIcon
@@ -44,19 +68,34 @@ export default function Card() {
               start={{ x: 0, y: 1 }}
               end={{ x: 1, y: 0 }}
               colors={["#3aa0fe", "#4ab2fe", "#5ac4fe"]}
+
             >
-              <Icon name={"play"} color={"#ffffff"} size={20} />
-            </ContainerButton>
-          </PlayButton>
-          <ContainerProgress>
-            <Progress>
-              <StatusProgress />
-            </Progress>
-            <ProgressTitle>1 season 4 series</ProgressTitle>
-          </ContainerProgress>
-        </Footer>
+              <Icon
+                name={favorite ? "bookmark" : "bookmark-o"}
+                color={favorite ? "#FF1744" : "#ffffff"}
+                size={22}
+              />
+            </ContainerIcon>
+          </Header>
+          <Footer>
+            <PlayButton>
+              <ContainerButton
+                start={{ x: 0, y: 1 }}
+                end={{ x: 1, y: 0 }}
+                colors={["#3aa0fe", "#4ab2fe", "#5ac4fe"]}
+              >
+                <Icon name={"play"} color={"#ffffff"} size={20} />
+              </ContainerButton>
+            </PlayButton>
+            <ContainerProgress>
+              <Progress>
+                <StatusProgress />
+              </Progress>
+              <ProgressTitle>{formatDate(filme.release_date)}</ProgressTitle>
+            </ContainerProgress>
+          </Footer>
+        </Mask>
       </Image>
-      
     </Container>
   );
 }

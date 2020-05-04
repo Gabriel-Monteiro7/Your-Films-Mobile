@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Your Films",
-    "slug": "tourfilms",
+    "slug": "yourfilms",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -17,11 +17,11 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.Rocket.BeTheHeros"
+      "bundleIdentifier": "com.Rocket.YourFilms"
     },
     "android": {
-      "package": "com.Rocket.BeTheHeros",
-      "versionCode": 1
+      "package": "com.Rocket.YourFilms",
+      "versionCode": 2
     }
   }
 }

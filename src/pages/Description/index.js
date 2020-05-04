@@ -31,14 +31,10 @@ export default function Description({ route }) {
   function navigateToBack() {
     navigation.goBack();
   }
-  useEffect(() => {
-    console.log(route.params);
-  }, []);
+  useEffect(() => {}, []);
   return (
     <>
-      <Image
-        source={{ uri: route.params.backdrop_path }}
-      >
+      <Image source={{ uri: route.params.backdrop_path }}>
         <Container>
           <ContainerBack
             onPress={() => {
