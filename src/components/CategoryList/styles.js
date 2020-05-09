@@ -19,6 +19,6 @@ export const Line = styled.View`
   height: 3px;
   border-radius: 100px;
 `;
-export const ContainerCategory = styled.View`
+export const ContainerCategory = styled.TouchableOpacity`
   padding-right: 30px;
 `;
