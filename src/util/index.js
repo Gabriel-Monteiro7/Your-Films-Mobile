@@ -2,9 +2,42 @@ import { Dimensions, PixelRatio } from "react-native";
 export const height = Math.round(Dimensions.get("window").height);
 export const width = Math.round(Dimensions.get("window").width);
 export const fontScale = PixelRatio.get();
-import { format } from "date-fns";
-import pt from "date-fns/locale/pt";
-import { getGenres } from "../services/api";
+import { format, compareAsc } from "date-fns";
+import ENV from "../../env.json";
+import { getVideo, getCredits } from "../service/api";
+const categories = {
+  movie: [
+    { title: "Em cartaz", id: "now_playing" },
+    {
+      title: "Populares",
+      id: "popular",
+    },
+    {
+      title: "Próximas estreias",
+      id: "upcoming",
+    },
+    { title: "Mais bem avaliados", id: "top_rated" },
+    { title: "Favoritos", id: "favorite" },
+  ],
+  series: [
+    { title: "Em exibição hoje", id: "airing_today" },
+    {
+      title: "Populares",
+      id: "popular",
+    },
+    {
+      title: "Na tv",
+      id: "on_the_air",
+    },
+
+    { title: "Mais bem avaliados", id: "top_rated" },
+    { title: "Favoritos", id: "favorite" },
+  ],
+};
+export const options = [
+  { title: "Filmes", id: "movie", categories: categories.movie },
+  { title: "Séries", id: "tv", categories: categories.series },
+];
 export const hp = (value) => {
   return Math.round((height * value) / 100);
 };
@@ -17,79 +50,49 @@ export const { format: formatPrice } = new Intl.NumberFormat("pt-BR", {
 });
 
 export const formatDate = (date) => {
-  return format(new Date(date), "MMMM dd', 'yyyy");
+  return date === undefined ? "" : format(new Date(date), "MMM dd', 'yyyy");
 };
 
-const urlOriginal = "https://image.tmdb.org/t/p/original";
-genres = [];
-getGenres().then((value) => {
-  genres = value.data["genres"];
-});
-export const setNameGenres = (value) => {
-  value.genre_ids = value.genre_ids.map((genre, index) => {
-    if (index < 3) {
-      return genres.find((value) => value.id === genre) || { name: "" };
-    } else if (index === 3) {
-      return { name: "..." };
-    }
-    return { name: "" };
+export const setNameGenres = (film, genres) => {
+  film.genre_ids = film.genre_ids.map((genre, index) => {
+    return (
+      genres.find((value) => (value.id === genre ? true : false)) || {
+        name: "",
+      }
+    );
   });
-  value.backdrop_path =
-    value.backdrop_path === null
+  film.backdrop_path =
+    film.backdrop_path === null
       ? null
-      : `${urlOriginal + value.backdrop_path}`;
-  value.poster_path =
-    value.poster_path === null ? null : urlOriginal + value.poster_path;
-  value.title_original = value.title;
-  value.title =
-    value.title.length > 16 ? value.title.slice(0, 16) + "..." : value.title;
-
-  return value;
+      : `${ENV.MOVIE_DB_API_URL_ORIGINAL + film.backdrop_path}`;
+  film.poster_path =
+    film.poster_path === null
+      ? null
+      : ENV.MOVIE_DB_API_URL_ORIGINAL + film.poster_path;
+  film.title_original = film.title;
+  film.title =
+    film.title.length > 16 ? film.title.slice(0, 16) + "..." : film.title;
+  return film;
 };
-export const setFilme = (filmes) => {
+export const setFilme = (filmes, genres) => {
   filmes.map((filme) => {
     filme.title = filme.title || filme.name;
-    filme = setNameGenres(filme);
+    filme = setNameGenres(filme, genres);
   });
   return filmes;
 };
-export const setFilmeHeader = (filmeHeader) => {
-  filmeHeader = filmeHeader.filter((value) => {
-    return value.backdrop_path !== null && value.genre_ids.length > 0;
-  })[0];
-
-  filmeHeader.title = filmeHeader.title || filmeHeader.name;
-  serviceApi.getVideo(filmeHeader.id).subscribe((video) => {
-    let key = video["results"].find((value) => value.key !== undefined)?.key;
-    let title = filmeHeader.title;
-    filmeHeader.video =
-      key === ""
-        ? null
-        : sanitizer.bypassSecurityTrustResourceUrl(
-            `https://www.youtube.com/embed/${key}?autoplay=1`
-          );
-    filmeHeader = setNameGenres(filmeHeader);
-    filmeHeader.title = title;
-  });
-  return filmeHeader;
-};
-export const setFilmeDetail = (filme) => {
+export const setFilmeDetail = async (filme, valueSelected) => {
   filme.title = filme.title || filme.name;
-  serviceApi.getVideo(filme.id).subscribe((video) => {
-    let key = video["results"][0]?.key;
-    filme.video =
-      key === undefined
-        ? null
-        : sanitizer.bypassSecurityTrustResourceUrl(
-            `https://www.youtube.com/embed/${key}?autoplay=1`
-          );
-    filme.backdrop_path =
-      filme.backdrop_path === null
-        ? null
-        : `
-        ${urlOriginal + filme.backdrop_path}`;
-    filme.poster_path =
-      filme.poster_path === null ? null : urlOriginal + filme.poster_path;
+  filme.backdrop_path =
+    filme.backdrop_path === null
+      ? null
+      : ENV.MOVIE_DB_API_URL_ORIGINAL + filme.backdrop_path;
+  filme.poster_path =
+    filme.poster_path === null
+      ? null
+      : ENV.MOVIE_DB_API_URL_ORIGINAL + filme.poster_path;
+  await getCredits(filme.id, valueSelected).then((producao) => {
+    filme.producao = setProducao(producao.data);
   });
   return filme;
 };
@@ -97,7 +100,7 @@ export const setProducao = (producao) => {
   let newProducao = {
     crew: producao.crew,
     cast: producao.cast,
-    urlOriginal: urlOriginal,
+    urlOriginal: ENV.MOVIE_DB_API_URL_ORIGINAL,
   };
   return newProducao;
 };

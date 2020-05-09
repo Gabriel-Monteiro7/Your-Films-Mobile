@@ -1,13 +1,17 @@
-import React from "react";
-import "intl";
-import "intl/locale-data/jsonp/pt-BR";
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
-import Routes from "./src/routes";
+import "intl";
+import "intl/locale-data/jsonp/pt-BR";
+import React from "react";
 import { StatusBar } from "react-native";
-import ToastProvider, { Toast } from "react-native-toastjs";
+import ToastProvider from "react-native-toastjs";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import "./src/config/ReactotronConfig";
+import Routes from "./src/routes";
+import { persistor, store } from "./src/store";
 
-export default function App() {
+export default function App({ navigation }) {
   let [fontsLoaded] = useFonts({
     "Lato-Black": require("./src/assets/fonts/Lato/Lato-Black.ttf"),
     "Lato-Bold": require("./src/assets/fonts/Lato/Lato-Bold.ttf"),
@@ -19,14 +23,18 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <ToastProvider>
-        <StatusBar
-          barStyle="light-content"
-          backgroundColor="transparent"
-          translucent={true}
-        />
-        <Routes />
-      </ToastProvider>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <ToastProvider>
+            <StatusBar
+              barStyle="light-content"
+              backgroundColor="transparent"
+              translucent={true}
+            />
+            <Routes navigation={navigation} />
+          </ToastProvider>
+        </PersistGate>
+      </Provider>
     );
   }
 }
