@@ -1,7 +1,5 @@
+import { StackActions, DrawerActions } from "@react-navigation/native";
 import React, { useState } from "react";
-import { View, Text } from "react-native";
-// import GradientButton from "react-native-gradient-buttons";
-
 import {
   Container,
   Image,
@@ -18,57 +16,51 @@ import {
   StatusProgress,
   Mask,
 } from "./styles";
-import { useNavigation } from "@react-navigation/native";
 import { formatDate } from "../../util";
-export default function Card({ filme }) {
-  const navigation = useNavigation();
-  function navigateToDescription() {
-    navigation.navigate("Description",filme);
+import {
+  getDetailRequest,
+  addFavoriteRequest,
+  removeFavoriteRequest,
+  setVideoRequest,
+} from "../../store/modules/films/actions";
 
+import { useDispatch, useSelector } from "react-redux";
+
+export default function Card({ film, navigation, favorite }) {
+  const dispatch = useDispatch();
+  let { valueSelected } = useSelector((state) => state.options);
+  function navigateToDescription() {
+    dispatch(getDetailRequest(valueSelected, film.id));
+    setTimeout(() => {
+      navigation.jumpTo("Description");
+    }, 1000);
   }
-  const [favorite, setFavorite] = useState(false);
+  function navigateToVideo() {
+    dispatch(setVideoRequest(film.id, valueSelected));
+    setTimeout(() => {
+      navigation.jumpTo("Video");
+    }, 1000);
+  }
+
+  function changeFavorite() {
+    if (favorite === false)
+      dispatch(addFavoriteRequest(film, valueSelected.option.id));
+    else dispatch(removeFavoriteRequest(film, valueSelected.option.id));
+  }
   return (
     <Container>
-      <Image source={{ uri: filme.poster_path }}>
+      <Image source={{ uri: film?.poster_path }}>
         <Mask
           onPress={() => {
             navigateToDescription();
           }}
         >
           <Header>
-            <Title>{filme.title}</Title>
+            <Title>{film.title}</Title>
             <ContainerIcon
               onPress={() => {
-                setFavorite(!favorite);
+                changeFavorite();
               }}
-      <View></View>
-      <Image
-        source={Imagem}
-        onTouchEnd={() => {
-          navigateToDescription();
-        }}
-      >
-        <Header>
-          <Title>See</Title>
-          <ContainerIcon
-            onPress={() => {
-              setFavorite(!favorite);
-            }}
-          >
-            <Icon
-              name={favorite ? "bookmark" : "bookmark-o"}
-              color={favorite ? "#FF1744" : "#ffffff"}
-              size={22}
-            />
-          </ContainerIcon>
-        </Header>
-        <Footer>
-          <PlayButton>
-            <ContainerButton
-              start={{ x: 0, y: 1 }}
-              end={{ x: 1, y: 0 }}
-              colors={["#3aa0fe", "#4ab2fe", "#5ac4fe"]}
-
             >
               <Icon
                 name={favorite ? "bookmark" : "bookmark-o"}
@@ -78,7 +70,11 @@ export default function Card({ filme }) {
             </ContainerIcon>
           </Header>
           <Footer>
-            <PlayButton>
+            <PlayButton
+              onPress={() => {
+                navigateToVideo();
+              }}
+            >
               <ContainerButton
                 start={{ x: 0, y: 1 }}
                 end={{ x: 1, y: 0 }}
@@ -91,7 +87,11 @@ export default function Card({ filme }) {
               <Progress>
                 <StatusProgress />
               </Progress>
-              <ProgressTitle>{formatDate(filme.release_date)}</ProgressTitle>
+              <ProgressTitle>
+                {formatDate(
+                  film?.release_date || film?.first_air_date || undefined
+                )}
+              </ProgressTitle>
             </ContainerProgress>
           </Footer>
         </Mask>

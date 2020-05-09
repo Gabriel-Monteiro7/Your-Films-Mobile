@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
-
-import { Container, CategoryTitle, Line, ContainerCategory } from "./styles";
-import { valueSelected } from "../../services/api";
+import { useDispatch, useSelector } from "react-redux";
+import { changeCategoryRequest } from "../../store/modules/options/actions";
+import { CategoryTitle, Container, ContainerCategory, Line } from "./styles";
 
 export default function CategoryList() {
+  const dispatch = useDispatch();
+  let { valueSelected } = useSelector((state) => state.options);
   const [categorias, setCategorias] = useState([]);
-
-  const [selected, setSelected] = useState("0");
   useEffect(() => {
     setCategorias(valueSelected.option.categories);
-  }, []);
+  }, [valueSelected]);
+  function onChangeCategory(category) {
+    dispatch(changeCategoryRequest(category.id));
+  }
   return (
     <Container>
       <FlatList
@@ -18,8 +21,8 @@ export default function CategoryList() {
         data={categorias}
         renderItem={({ item }) => (
           <ContainerCategory
-            onTouchEnd={() => {
-              setSelected(item.id);
+            onPress={() => {
+              onChangeCategory(item);
             }}
           >
             <CategoryTitle active={item.id === valueSelected.category}>
