@@ -4,20 +4,20 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export const Container = styled.View`
   margin: 30px 0px;
-
 `;
 export const Title = styled.Text`
   color: white;
-  font-size: 24px;
+  font-size: 22px;
   font-family: "Lato-Bold";
+  width: 80%;
 `;
 export const Image = styled.ImageBackground.attrs({
   borderRadius: 20,
 })`
   height: 420px;
   width: 100%;
-  background:#1f1f1f;
-  border-radius:20px;
+  background: #1f1f1f;
+  border-radius: 20px;
 `;
 export const Mask = styled.TouchableOpacity`
   background: #11111158;
@@ -25,10 +25,9 @@ export const Mask = styled.TouchableOpacity`
   height: 100%;
   justify-content: space-between;
   position: relative;
-
 `;
 export const ContainerIcon = styled.TouchableOpacity`
-  padding: 0px 10px;
+  padding: 0px 0px;
 `;
 export const Icon = styled(FontAwesome)`
   /* font-size: 25px; */
@@ -38,9 +37,7 @@ export const Header = styled.View`
   align-items: center;
   justify-content: space-between;
 `;
-export const PlayButton = styled.TouchableOpacity`
-
-`;
+export const PlayButton = styled.TouchableOpacity``;
 export const ContainerButton = styled(LinearGradient)`
   height: 50px;
   width: 50px;
