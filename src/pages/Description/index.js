@@ -99,7 +99,7 @@ export default function Description() {
               <Back name={"angle-left"} />
             </ContainerBack>
             <Header>
-              <Title>{film.title}</Title>
+              <Title>{film.title_original}</Title>
 
               <DateLabel>
                 {formatDate(film?.release_date || new Date())}
@@ -109,25 +109,22 @@ export default function Description() {
               </Progress>
             </Header>
           </Container>
-          <PlayButton
-            onPress={() => {
-              navigateToVideo();
-            }}
-          >
-            <ContainerButton
-              start={{ x: 0, y: 1 }}
-              end={{ x: 1, y: 0 }}
-              colors={["#3aa0fe", "#4ab2fe", "#5ac4fe"]}
-            >
-              <Icon name={"play"} color={"#ffffff"} size={20} />
-            </ContainerButton>
-          </PlayButton>
         </Mask>
       </Image>
-
       <InformationContainer>
-        <Forma source={forma} />
-
+        <PlayButton
+          onPress={() => {
+            navigateToVideo();
+          }}
+        >
+          <ContainerButton
+            start={{ x: 0, y: 1 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#3aa0fe", "#4ab2fe", "#5ac4fe"]}
+          >
+            <Icon name={"play"} color={"#ffffff"} size={20} />
+          </ContainerButton>
+        </PlayButton>
         <Container
           style={{
             flexDirection: "row",
@@ -260,7 +257,7 @@ export default function Description() {
                     marginLeft: 0,
                     marginBottom: "15%",
                     fontSize: 20,
-                    marginTop: 5,
+                    marginTop: 7,
                   }}
                 />
               </ContainerIcon>

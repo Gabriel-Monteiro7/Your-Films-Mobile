@@ -81,20 +81,23 @@ export const setFilme = (filmes, genres) => {
   });
   return filmes;
 };
-export const setFilmeDetail = async (filme, valueSelected) => {
-  filme.title = filme.title || filme.name;
-  filme.backdrop_path =
-    filme.backdrop_path === null
+export const setFilmeDetail = async (film, valueSelected) => {
+  film.title = film.title || film.name;
+  film.backdrop_path =
+    film.backdrop_path === null
       ? null
-      : ENV.MOVIE_DB_API_URL_ORIGINAL + filme.backdrop_path;
-  filme.poster_path =
-    filme.poster_path === null
+      : `${ENV.MOVIE_DB_API_URL_ORIGINAL + film.backdrop_path}`;
+  film.poster_path =
+    film.poster_path === null
       ? null
-      : ENV.MOVIE_DB_API_URL_ORIGINAL + filme.poster_path;
-  await getCredits(filme.id, valueSelected).then((producao) => {
-    filme.producao = setProducao(producao.data);
+      : ENV.MOVIE_DB_API_URL_ORIGINAL + film.poster_path;
+  film.title_original = film.title;
+  film.title =
+    film.title.length > 16 ? film.title.slice(0, 16) + "..." : film.title;
+  await getCredits(film.id, valueSelected).then((producao) => {
+    film.producao = setProducao(producao.data);
   });
-  return filme;
+  return film;
 };
 export const setProducao = (producao) => {
   let newProducao = {
