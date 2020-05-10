@@ -46,6 +46,7 @@ export default function Video() {
       <Container>
         <ContainerVideo>
           <WebView
+            allowsFullscreenVideo={true}
             javaScriptEnabled={true}
             domStorageEnabled={true}
             source={{ uri: video === null || video === false ? "" : video }}
