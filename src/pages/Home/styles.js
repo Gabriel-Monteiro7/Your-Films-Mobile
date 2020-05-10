@@ -2,7 +2,7 @@ import { Feather, MaterialIcons } from "@expo/vector-icons";
 import Constants from "expo-constants";
 import styled from "styled-components/native";
 import { hp } from "../../util";
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   background: #111111;
   flex: 1;
   padding: 0px 30px;
@@ -15,7 +15,7 @@ export const Header = styled.View`
 `;
 export const Title = styled.Text`
   color: white;
-  font-size: 35px;
+  font-size: ${hp(5)}px;
   font-family: "Lato-Bold";
 `;
 export const ContainerIcon = styled.TouchableOpacity``;
@@ -60,6 +60,7 @@ export const RankProgress = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: space-evenly;
+  margin-bottom: 10px;
 `;
 export const IconRank = styled(MaterialIcons)`
   color: #5ac4fe;

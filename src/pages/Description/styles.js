@@ -6,7 +6,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export const Container = styled.View`
   flex: 1;
-  padding: 0px 30px;
+  padding: 0px ${hp(4)}px;
 `;
 
 export const Back = styled(FontAwesome)`
@@ -41,7 +41,7 @@ export const InformationContainer = styled.View`
 export const Header = styled.View``;
 export const Title = styled.Text`
   color: #ffffffa8;
-  font-size: 30px;
+  font-size: ${hp(4)}px;
   font-family: "Lato-Bold";
   margin-bottom: 10px;
   width: 90%;
@@ -87,13 +87,13 @@ export const Forma = styled.Image.attrs({
 `;
 export const PlayButton = styled.TouchableOpacity`
   position: absolute;
-  bottom: 4px;
-  left: 37.5px;
+  bottom: 6px;
+  left: 10%;
   z-index: 1;
 `;
 export const ContainerButton = styled(LinearGradient)`
-  height: 55.5px;
-  width: 55.5px;
+  height: ${wp(14)}px;
+  width: ${wp(14)}px;
   border-radius: 100px;
   justify-content: center;
   align-items: center;
@@ -123,7 +123,7 @@ export const ContainerRank = styled.View`
   height: 3%;
 `;
 export const DescriptionValue = styled.Text`
-  margin-bottom: 40px;
+  margin-bottom: ${hp(3)}px;
   color: #524e51;
   height: 35%;
 `;
@@ -156,7 +156,7 @@ export const ContainerList = styled.View`
 
 export const ListValue = styled.Text`
   font-family: "Lato-Bold";
-  font-size: 16px;
+  font-size: ${wp(4)}px;
   color: ${(props) => (props.active ? "white" : "#524E51")};
 `;
 export const Line = styled.View`
@@ -181,8 +181,8 @@ export const ContainerProducao = styled.View`
 export const ImageProducao = styled.ImageBackground.attrs({
   borderRadius: 100,
 })`
-  height: 50px;
-  width: 50px;
+  height: ${wp(12)}px;
+  width: ${wp(12)}px;
   margin-right: 10px;
   background: #191919;
   border-radius: 100px;
@@ -190,13 +190,13 @@ export const ImageProducao = styled.ImageBackground.attrs({
 export const NameProducao = styled.Text`
   color: white;
   font-family: "Lato-Bold";
-  font-size: 16px;
+  font-size: ${wp(4)}px;
   letter-spacing: 2px;
 `;
 export const NameJob = styled.Text`
   color: #6f696d;
   font-family: "Lato-Bold";
-  font-size: 12px;
+  font-size: ${wp(3)}px;
 `;
 export const ContainerVideo = styled.View`
   margin: auto;

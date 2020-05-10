@@ -1,5 +1,5 @@
 import Lottie from "lottie-react-native";
-
+import {hp,wp} from '../../util'
 import React, { useEffect, useRef, useState } from "react";
 import { View, TextInput, Text } from "react-native";
 import Carousel from "react-native-snap-carousel";
@@ -103,7 +103,7 @@ export default function Home({ navigation }) {
       <ContainerIcon>
         <Icon
           name={"menu"}
-          style={{ marginBottom: 30, marginTop: 10 }}
+          style={{ marginBottom: hp(3), marginTop: 10 }}
           onPress={() => {
             navigation.openDrawer();
           }}
@@ -180,9 +180,9 @@ export default function Home({ navigation }) {
                 </>
               )}
               onSnapToItem={(index) => setIndex(index)}
-              sliderWidth={500}
-              itemWidth={280}
-              containerCustomStyle={{ marginLeft: -60 }}
+              sliderWidth={wp(200)}
+              itemWidth={wp(73)}
+              containerCustomStyle={{ marginLeft: -37 }}
             />
             {valueSelected.category !== "favorite" &&
             films.length - 1 === index &&

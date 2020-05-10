@@ -17,6 +17,7 @@ export default function CategoryList() {
   return (
     <Container>
       <FlatList
+        showsHorizontalScrollIndicator={false}
         horizontal={true}
         data={categorias}
         renderItem={({ item }) => (
