@@ -140,6 +140,7 @@ export default function Description() {
           <View style={{ width: "75%" }}>
             <ContainerList>
               <FlatList
+                showsHorizontalScrollIndicator={false}
                 horizontal={true}
                 data={options}
                 data={options}
@@ -210,6 +211,7 @@ export default function Description() {
               </>
             ) : (
               <FlatList
+                showsVerticalScrollIndicator={false}
                 data={film.producao[option]}
                 keyExtractor={(item, index) => item.id + "" + index}
                 renderItem={({ item, index }) => (
@@ -242,9 +244,10 @@ export default function Description() {
             <View
               style={{
                 backgroundColor: "#171717",
-                height: "35%",
+                height: "38%",
                 borderRadius: 17,
-                padding: 13,
+                paddingVertical: "2%",
+                paddingHorizontal: "5%",
                 width: "75%",
                 justifyContent: "space-between",
                 alignItems: "center",
@@ -253,7 +256,12 @@ export default function Description() {
               <ContainerIcon>
                 <StarIcon
                   name="star"
-                  style={{ marginLeft: 0, marginBottom: 10, fontSize: 20 }}
+                  style={{
+                    marginLeft: 0,
+                    marginBottom: "15%",
+                    fontSize: 20,
+                    marginTop: 5,
+                  }}
                 />
               </ContainerIcon>
               <ContainerFavorite

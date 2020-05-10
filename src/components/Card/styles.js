@@ -1,9 +1,10 @@
 import styled from "styled-components/native";
 import { FontAwesome } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { hp, wp, height } from "../../util";
 
 export const Container = styled.View`
-  margin: 30px 0px;
+  margin: ${hp(3)}px 0px;
 `;
 export const Title = styled.Text`
   color: white;
@@ -14,8 +15,8 @@ export const Title = styled.Text`
 export const Image = styled.ImageBackground.attrs({
   borderRadius: 20,
 })`
-  height: 420px;
-  width: 100%;
+  height: ${hp(52)}px;
+  width: 95%;
   background: #1f1f1f;
   border-radius: 20px;
 `;
@@ -39,8 +40,8 @@ export const Header = styled.View`
 `;
 export const PlayButton = styled.TouchableOpacity``;
 export const ContainerButton = styled(LinearGradient)`
-  height: 50px;
-  width: 50px;
+  height: ${wp(13)}px;
+  width: ${wp(13)}px;
   border-radius: 100px;
   justify-content: center;
   align-items: center;
