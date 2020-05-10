@@ -24,19 +24,24 @@ export const Image = styled.ImageBackground.attrs({
 })`
   /* flex: 1; */
   height: 55%;
+  z-index: 0;
 `;
 export const Mask = styled.View`
   padding-top: ${Constants.statusBarHeight + hp(1)}px;
   flex: 1;
   background: #11111158;
   /* height: 100%; */
+  z-index: 1;
 `;
 export const InformationContainer = styled.View`
   flex: 1;
   background: #111111;
-  z-index: 1;
-  padding-bottom: 30px;
+  z-index: 2;
+  padding: 30px 0px;
   width: 100%;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  margin-top: -25px;
 `;
 export const Header = styled.View``;
 export const Title = styled.Text`
@@ -73,31 +78,33 @@ export const StatusProgress = styled.View`
   height: 100%;
   border-radius: 100px;
 `;
-export const Forma = styled.Image.attrs({
-  // borderRadius: 20,
-})`
-  /* flex: 1; */
-  height: 35px;
-  width: 100%;
-  border-top-right-radius: 35px;
-  border-top-left-radius: 35px;
-  margin-top: -34px;
+// export const Forma = styled.Image.attrs({
+//   // borderRadius: 20,
+// })`
+//   /* flex: 1; */
+//   background: transparent;
+//   /* height: 35px; */
+//   width: 100%;
+//   border-top-right-radius: 35px;
+//   border-top-left-radius: 35px;
+//   /* margin-top: -34px; */
 
-  /* padding-bottom: 50px; */
-`;
+//   /* padding-bottom: 50px; */
+// `;
 export const PlayButton = styled.TouchableOpacity`
   position: absolute;
-  bottom: 6px;
-  left: 10%;
-  z-index: 1;
+  top: -${wp(8)}px;
+  left: 9.4%;
+  z-index: 10;
 `;
 export const ContainerButton = styled(LinearGradient)`
-  height: ${wp(14)}px;
-  width: ${wp(14)}px;
+  height: ${wp(14.4)}px;
+  width: ${wp(14.4)}px;
   border-radius: 100px;
   justify-content: center;
   align-items: center;
-  opacity: 0.8;
+  opacity: 0.9;
+  z-index: 10;
 `;
 export const Icon = styled(FontAwesome)`
   /* font-size: 25px; */
